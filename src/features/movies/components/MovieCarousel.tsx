@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 
 import type { Movie } from '../types/movie';
 import { MovieCard } from './MovieCard';
@@ -18,12 +18,9 @@ export const MovieCarousel = ({ movies, onMoviePress }: Props) => {
     return (
         <FlatList
             horizontal
-            style={{ flex: 1 }}
+            style={styles.contaner}
             data={movies}
-            contentContainerStyle={{
-                alignItems: 'stretch',
-                paddingRight: CARD_INTERVAL,
-            }}
+            contentContainerStyle={styles.constent}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
                 <MovieCard
@@ -47,14 +44,16 @@ export const MovieCarousel = ({ movies, onMoviePress }: Props) => {
                 offset: (SNAP_INTERVAL) * index,
                 index,
             })}
-
-            onMomentumScrollEnd={(event) => {
-                // TODO: Uncomment if onIndexChange prop is added
-                // const index = Math.round(
-                //     event.nativeEvent.contentOffset.x / SCREEN_WIDTH,
-                // );
-                // onIndexChange?.(index);
-            }}
         />
     );
 };
+
+const styles = StyleSheet.create({
+    contaner: {
+        flex: 1,
+    },
+    constent: {
+        alignItems: 'stretch',
+        paddingRight: CARD_INTERVAL,
+    }
+});

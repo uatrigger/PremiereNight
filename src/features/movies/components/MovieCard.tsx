@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Pressable, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text, Pressable, ImageBackground } from 'react-native';
 import { TMDB_CONFIG } from '@config/tmdb';
 import { CARD_WIDTH, CARD_HEIGHT } from '@shared/constants/layout';
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {  View, Text } from 'react-native';
+import {  View, Text, StyleSheet} from 'react-native';
 
 import { useWatchlistStore } from '../store/watchlistStore';
 import { WatchlistItem } from '../components/WatchlistItem';
@@ -24,8 +24,8 @@ export const WatchlistScreen = () => {
 
     return (
         <ScrollableScreenLayout>
-            <View style={{ flex: 1, paddingLeft: spacing.m, gap: spacing.l }}>
-                <Text style={[typography.action, { color: colors.muted }]} >Watch List</Text>
+            <View style={styles.contaner}>
+                <Text style={[typography.action, styles.text]} >Watch List</Text>
                 {movies?.length > 0 && movies.map((movie) => {
                     return <WatchlistItem key={movie.id} movie={movie} />
                 })}
@@ -33,3 +33,14 @@ export const WatchlistScreen = () => {
         </ScrollableScreenLayout>
     );
 };
+
+const styles = StyleSheet.create({
+    contaner: {
+        flex: 1,
+        paddingLeft: spacing.m,
+        gap: spacing.l,
+    },
+    text: {
+        color: colors.muted
+    }
+});

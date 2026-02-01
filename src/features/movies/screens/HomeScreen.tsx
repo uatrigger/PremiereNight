@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { usePopularMovies } from '../hooks/usePopularMovies';
@@ -38,7 +38,7 @@ export const HomeScreen = ({ navigation }: Props) => {
 
     return (
         <ScrollableScreenLayout>
-            <View style={{ flex: 1, paddingLeft: spacing.m, gap: spacing.l }}>
+            <View style={styles.contaner}>
                 <Section title='Popular'>
                     <MovieCarousel
                         movies={popular.data.results}
@@ -69,3 +69,11 @@ export const HomeScreen = ({ navigation }: Props) => {
         </ScrollableScreenLayout>
     );
 };
+
+const styles = StyleSheet.create({
+    contaner: {
+        flex: 1,
+        paddingLeft: spacing.m,
+        gap: spacing.l 
+    }
+});

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, ImageBackground, StyleSheet, Pressable } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 
 import type { Movie } from '@features/movies/types/movie';
 import { TMDB_CONFIG } from '@config/tmdb';
