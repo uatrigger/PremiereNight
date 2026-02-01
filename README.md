@@ -134,3 +134,11 @@ shared/
 - Genre data treated as reference metadata and cached aggressively
 - Tests not implemented (in TODO)
 - Performance optimizations such as `useCallback`, `useMemo`, and `React.memo` were intentionally not applied at this stage. Given the current application size and data volume, the UI maintains a stable FPS and predictable rendering behavior. Premature memoization was avoided to keep the codebase simpler and more readable (in TODO).
+
+## Live Demo (Appetize)
+
+- **iOS demo**
+  https://appetize.io/app/b_wybq5gz7hiho6lhxm4lf6hp7de
+
+- **Android demo**
+  https://appetize.io/app/b_hpqz2pdawb5bqnxy7cw6g7p6py
