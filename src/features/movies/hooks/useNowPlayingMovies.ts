@@ -4,12 +4,12 @@ import { movieQueryKeys } from '../api/queries';
 import type { Movie } from '../types/movie';
 
 type NowPlayingResponse = {
-    results: Movie[];
+  results: Movie[];
 };
 
 export const useNowPlayingMovies = () => {
-    return useQuery<NowPlayingResponse>({
-        queryKey: movieQueryKeys.nowPlaying(),
-        queryFn: moviesApi.fetchNowPlayingMovies,
-    });
+  return useQuery<NowPlayingResponse>({
+    queryKey: movieQueryKeys.nowPlaying(),
+    queryFn: moviesApi.fetchNowPlayingMovies,
+  });
 };

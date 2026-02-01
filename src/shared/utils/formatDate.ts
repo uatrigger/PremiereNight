@@ -1,6 +1,6 @@
 export const formatDate = (date: string): string => {
-    if (!date) {
-        return '';
-    }
-    return new Date(date).getFullYear().toString();
+  if (!date) {
+    return '';
+  }
+  return new Date(date).getFullYear().toString();
 };

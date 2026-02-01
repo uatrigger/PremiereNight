@@ -4,12 +4,12 @@ import { movieQueryKeys } from '../api/queries';
 import type { Movie } from '../types/movie';
 
 type PopularMoviesResponse = {
-    results: Movie[];
+  results: Movie[];
 };
 
 export const usePopularMovies = () => {
-    return useQuery<PopularMoviesResponse>({
-        queryKey: movieQueryKeys.popular(),
-        queryFn: moviesApi.fetchPopularMovies,
-    });
+  return useQuery<PopularMoviesResponse>({
+    queryKey: movieQueryKeys.popular(),
+    queryFn: moviesApi.fetchPopularMovies,
+  });
 };

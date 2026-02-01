@@ -18,90 +18,84 @@ import { Icon } from '@shared/components/Icon';
 type Props = NativeStackScreenProps<HomeStackParamList, 'MovieDetail'>;
 
 export const MovieDetailScreen = ({ route, navigation }: Props) => {
-    const { movieId, fromApp } = route.params;
+  const { movieId, fromApp } = route.params;
 
-    const { data, isLoading } = useMovieDetails(Number(movieId));
+  const { data, isLoading } = useMovieDetails(Number(movieId));
 
-    const addMovie = useWatchlistStore((s) => s.addMovie);
-    const removeMovie = useWatchlistStore((s) => s.removeMovie);
-    const movies = useWatchlistStore((s) => s.movies);
+  const addMovie = useWatchlistStore((s) => s.addMovie);
+  const removeMovie = useWatchlistStore((s) => s.removeMovie);
+  const movies = useWatchlistStore((s) => s.movies);
 
-    const handleGoBack = () => {
-        if (!fromApp) {
-            navigation.reset({
-                index: 0,
-                routes: [{ name: "Home" }],
-            });
-            return;
-        }
-        navigation.goBack()
-    };
-
-    const inWatchlist = !!data && movies.some((m) => m.id === data.id);
-
-    if (isLoading || !data) {
-        return <Loader />;
+  const handleGoBack = () => {
+    if (!fromApp) {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Home' }],
+      });
+      return;
     }
+    navigation.goBack();
+  };
 
-    const genreNames = data?.genres?.map((i) => i.name);
+  const inWatchlist = !!data && movies.some((m) => m.id === data.id);
 
-    const posterUrl = data.poster_path
-        ? `${TMDB_CONFIG.IMAGE_BASE_URL}/${TMDB_CONFIG.IMAGE_SIZES.poster}${data.poster_path}`
-        : undefined;
+  if (isLoading || !data) {
+    return <Loader />;
+  }
 
+  const genreNames = data?.genres?.map((i) => i.name);
 
-    return (
-        <ImageBackground
-            source={{ uri: posterUrl }}
-            resizeMode="cover"
-            style={styles.container}>
-            <View style={styles.navigation}>
-                <Button onPress={handleGoBack}>
-                    <Icon name="chevron-left" />
-                </Button>
-                <Button onPress={() => inWatchlist ? removeMovie(data.id) : addMovie(data)} >
-                    <Icon name={inWatchlist ? 'star' : 'star-outline'} />
-                </Button>
-            </View>
-            <View style={styles.content}>
-                <Text style={typography.title}>{data.title}</Text>
-                {genreNames?.length ? (
-                    <Text style={typography.caption}>
-                        {genreNames?.join(', ')}
-                    </Text>
-                ) : null}
-                <Text style={typography.text}>{data.overview}</Text>
-                <Text style={typography.caption}>Release: {data.release_date}</Text>
-            </View>
-        </ImageBackground>
-    );
+  const posterUrl = data.poster_path
+    ? `${TMDB_CONFIG.IMAGE_BASE_URL}/${TMDB_CONFIG.IMAGE_SIZES.poster}${data.poster_path}`
+    : undefined;
+
+  return (
+    <ImageBackground source={{ uri: posterUrl }} resizeMode="cover" style={styles.container}>
+      <View style={styles.navigation}>
+        <Button onPress={handleGoBack}>
+          <Icon name="chevron-left" />
+        </Button>
+        <Button onPress={() => (inWatchlist ? removeMovie(data.id) : addMovie(data))}>
+          <Icon name={inWatchlist ? 'star' : 'star-outline'} />
+        </Button>
+      </View>
+      <View style={styles.content}>
+        <Text style={typography.title}>{data.title}</Text>
+        {genreNames?.length ? (
+          <Text style={typography.caption}>{genreNames?.join(', ')}</Text>
+        ) : null}
+        <Text style={typography.text}>{data.overview}</Text>
+        <Text style={typography.caption}>Release: {data.release_date}</Text>
+      </View>
+    </ImageBackground>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'space-between',
-        paddingTop: spacing.xl,
-    },
-    subContainer: {
-        justifyContent: 'flex-end',
-        alignItems: 'flex-start',
-        padding: spacing.xl,
-    },
-    navigation: {
-        alignItems: 'flex-start',
-        paddingHorizontal: spacing.m,
-        paddingVertical: Platform.OS === 'ios' ? spacing.l : 0,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    content: {
-        alignItems: 'flex-start',
-        padding: spacing.xl,
-        justifyContent: 'flex-start',
-        backgroundColor: colors.muted,
-        borderTopLeftRadius: spacing.m,
-        borderTopRightRadius: spacing.m,
-        gap: spacing.m,
-    }
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingTop: spacing.xl,
+  },
+  subContainer: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    padding: spacing.xl,
+  },
+  navigation: {
+    alignItems: 'flex-start',
+    paddingHorizontal: spacing.m,
+    paddingVertical: Platform.OS === 'ios' ? spacing.l : 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  content: {
+    alignItems: 'flex-start',
+    padding: spacing.xl,
+    justifyContent: 'flex-start',
+    backgroundColor: colors.muted,
+    borderTopLeftRadius: spacing.m,
+    borderTopRightRadius: spacing.m,
+    gap: spacing.m,
+  },
 });

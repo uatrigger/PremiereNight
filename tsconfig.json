@@ -3,35 +3,15 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@app/*": [
-        "app/*"
-      ],
-      "@features/*": [
-        "features/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ],
-      "@services/*": [
-        "services/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@storage/*": [
-        "storage/*"
-      ],
-      "@types/*": [
-        "types/*"
-      ]
+      "@app/*": ["app/*"],
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@services/*": ["services/*"],
+      "@config/*": ["config/*"],
+      "@storage/*": ["storage/*"],
+      "@types/*": ["types/*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "**/node_modules",
-    "**/Pods"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/Pods"]
 }
