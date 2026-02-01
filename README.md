@@ -78,7 +78,7 @@ npm run ios
 xcrun simctl openurl booted "premierenight://movie/550"
 ```
 
-### Deeplink open on iOS
+### Deeplink open on Android
 ```bash
 adb shell am start  -W -a android.intent.action.VIEW  -d "premierenight://movie/550"  com.premierenight
 ```
